@@ -2,6 +2,7 @@
 import EnumValues from "./EnumValues.astro";
 import UnionVariantBadges from "./UnionVariantBadges.astro";
 import type { InlineRow } from "../../lib/openapi/referenceIndex";
+import { parseInlineMarkdown } from "../../lib/markdown";
 
 interface Props {
   rows?: InlineRow[];
@@ -59,7 +60,10 @@ const typeClass = (type: string) => {
             )}
           </div>
           {row.description && (
-            <div class="text-sm text-slate-600">{row.description}</div>
+            <div
+              class="text-sm text-slate-600"
+              set:html={parseInlineMarkdown(row.description)}
+            />
           )}
           {!row.literalValue && (
             <EnumValues

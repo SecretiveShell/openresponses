@@ -1,4 +1,6 @@
 ---
+import { parseInlineMarkdown } from "../../lib/markdown";
+
 type EnumValue = string | number | boolean | null;
 type EnumDescriptions = Record<string, string>;
 
@@ -40,9 +42,10 @@ const { values = [], descriptions = {}, inline = false } = Astro.props as Props;
                       "border-b": index < values.length - 1,
                     },
                   ]}
-                >
-                  {description || "—"}
-                </td>
+                  set:html={
+                    description ? parseInlineMarkdown(description) : "-"
+                  }
+                />
               </tr>
             );
           })}
