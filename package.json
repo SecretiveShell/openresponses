@@ -12,7 +12,8 @@
     "prepare": "husky",
     "dev:astro": "astro dev",
     "dev": "bun run spec; bun run dev:astro",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "test:compliance": "bun run bin/compliance-test.ts"
   },
   "author": "",
   "license": "ISC",

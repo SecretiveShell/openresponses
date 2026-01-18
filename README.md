@@ -13,3 +13,32 @@ At a high level, the spec centers on:
 
 - Full specification: `public/openapi/openapi.json`
 - Website documentation content (source): `src/pages`
+- Compliance tests: `bin/compliance-test.ts`
+
+## Compliance testing
+
+This repo includes an interactive compliance tester in the docs site (`/compliance`) and a CLI runner for faster local iteration and CI (`bin/compliance-test.ts`).
+
+### Web UI
+
+The interactive compliance tester is available at https://www.openresponses.org/compliance.
+
+### CLI
+
+Run the same compliance suite as the web UI from the command line. For example:
+
+```bash
+npm run test:compliance -- --base-url http://localhost:8000/v1 --api-key $API_KEY
+```
+
+Filter to specific tests:
+
+```bash
+npm run test:compliance -- --base-url http://localhost:8000/v1 --api-key $API_KEY --filter basic-response,streaming-response
+```
+
+For all flags:
+
+```bash
+bun run bin/compliance-test.ts --help
+```
